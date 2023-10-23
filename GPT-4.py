@@ -22,7 +22,7 @@ if prompt:
         for resp in openai.ChatCompletion.create(
             model = "gpt-4",
             messages=[
-                    {"role": "system", "content": "You are a proficient Python and R programmer."},
+                    {"role": "system", "content": "You are a Professor of High Performance Computing."},
                     {"role": "user", "content": prompt},
                 ],
             stream = True):
