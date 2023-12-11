@@ -1,7 +1,7 @@
 import streamlit as st
-import openai
+from openai import OpenAI
 
-openai.api_key = st.secrets['OPENAI_API_KEY']
+client = OpenAI(api_key = st.secrets['OPENAI_API_KEY'])
 
 if "messages" not in st.session_state:
         st.session_state.messages = []
@@ -19,10 +19,10 @@ if prompt:
         message_placeholder = st.empty()
         full_response = ""
         report = []
-        for resp in openai.ChatCompletion.create(
+        for resp in client.chat.completions.create(
             model = "gpt-4",
             messages=[
-                    {"role": "system", "content": "You are a proficient Leetcoder."},
+                    {"role": "system", "content": "You are a Professor of Automata, who explains questions of Automata really well and step by step."},
                     {"role": "user", "content": prompt},
                 ],
             stream = True):
