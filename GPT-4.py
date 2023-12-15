@@ -22,7 +22,7 @@ if prompt:
         for resp in client.chat.completions.create(
             model = "gpt-4",
             messages=[
-                    {"role": "system", "content": "You are a Professor of Automata, who explains questions of Automata really well and step by step."},
+                    {"role": "system", "content": "You are a Professor of High Performance Computing, who explains questions of High Performance Computing really well and step by step."},
                     {"role": "user", "content": prompt},
                 ],
             stream = True):
