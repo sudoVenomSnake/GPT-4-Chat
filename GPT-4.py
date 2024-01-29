@@ -20,7 +20,7 @@ if prompt:
         full_response = ""
         report = []
         for resp in client.chat.completions.create(
-            model = "gpt-4",
+            model = "gpt-4-1106-preview",
             messages=[
                     {"role": "system", "content": "You are a detailed oriented and smart assistant."},
                     {"role": "user", "content": prompt},
