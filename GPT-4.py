@@ -5,6 +5,7 @@ client = OpenAI(api_key = st.secrets['OPENAI_API_KEY'])
 
 if "messages" not in st.session_state:
         st.session_state.messages = []
+        st.session_state.messages.append({"role": "system", "content": "You are a detailed oriented and smart assistant."})
         st.session_state.messages.append({"role": "assistant", "content": f"Go on, ask me questions."})
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
@@ -19,12 +20,10 @@ if prompt:
         message_placeholder = st.empty()
         full_response = ""
         report = []
+        st.session_state.messages.append({"role": "user", "content": prompt})
         for resp in client.chat.completions.create(
             model = "gpt-4-1106-preview",
-            messages=[
-                    {"role": "system", "content": "You are a detailed oriented and smart assistant."},
-                    {"role": "user", "content": prompt},
-                ],
+            messages = st.session_state.messages,
             stream = True):
             if resp.choices[0].finish_reason == "stop":
                 break
